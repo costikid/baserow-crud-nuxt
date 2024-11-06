@@ -12,8 +12,8 @@ This repository demonstrates how to interact with a Baserow table using a Nuxt a
 1. **Clone this repository**:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/yourusername/baserow-crud-nuxt.git
+   cd baserow-crud-nuxt
    ```
 
 2. **Install dependencies**:
@@ -27,8 +27,14 @@ This repository demonstrates how to interact with a Baserow table using a Nuxt a
    Create a `.env` file at the root of the project and add your Baserow API token:
 
    ```plaintext
-   NUXT_PUBLIC_API_TOKEN=your_baserow_api_token
+
    ```
+
+# .env
+
+NUXT_API_TOKEN=your baserow api token
+
+NUXT_API_URL=https://api.baserow.io ```
 
 4. **Set up constants**:
 
