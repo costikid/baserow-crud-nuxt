@@ -26,19 +26,17 @@ This repository demonstrates how to interact with a Baserow table using a Nuxt a
 
    Create a `.env` file at the root of the project and add your Baserow API token:
 
-   ```plaintext
+   ```NUXT_API_TOKEN=your baserow api token
 
    ```
 
-# .env
+NUXT_API_URL=https://api.baserow.io
 
-NUXT_API_TOKEN=your baserow api token
-
-NUXT_API_URL=https://api.baserow.io ```
+````
 
 4. **Set up constants**:
 
-   Define your Baserow table IDs in a constants file (e.g., `utils/constants.ts`) for easy reference in the composables.
+Define your Baserow table IDs in a constants file (e.g., `utils/constants.ts`) for easy reference in the composables.
 
 ## Key Functionalities
 
@@ -54,7 +52,7 @@ In your component, call `useFetchData()` to fetch data on load:
 
 ```javascript
 const { data, error } = await useFetchData();
-```
+````
 
 #### Tutorial
 
