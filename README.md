@@ -1,75 +1,113 @@
-# Nuxt 3 Minimal Starter
+# Nuxt Baserow Table Data Management
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This repository demonstrates how to interact with a Baserow table using a Nuxt app, covering how to fetch, post, and edit data with composables for easy API management.
+
+## Prerequisites
+
+1. **Nuxt 3**: This project is built on Nuxt 3. Make sure Node.js and Nuxt are installed.
+2. **Baserow Account**: Create a [Baserow](https://baserow.io) account to obtain an API token and set up your database tables.
 
 ## Setup
 
-Make sure to install the dependencies:
+1. **Clone this repository**:
 
-```bash
-# npm
-npm install
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
+   ```
 
-# pnpm
-pnpm install
+2. **Install dependencies**:
 
-# yarn
-yarn install
+   ```bash
+   npm install
+   ```
 
-# bun
-bun install
+3. **Add API token**:
+
+   Create a `.env` file at the root of the project and add your Baserow API token:
+
+   ```plaintext
+   NUXT_PUBLIC_API_TOKEN=your_baserow_api_token
+   ```
+
+4. **Set up constants**:
+
+   Define your Baserow table IDs in a constants file (e.g., `utils/constants.ts`) for easy reference in the composables.
+
+## Key Functionalities
+
+This project provides composables to fetch, post, and edit data in a Baserow table. Here’s how to use each feature:
+
+### 1. Fetching Data
+
+The `useFetchData` composable retrieves data from a Baserow table with a GET request.
+
+#### Usage
+
+In your component, call `useFetchData()` to fetch data on load:
+
+```javascript
+const { data, error } = await useFetchData();
 ```
 
-## Development Server
+#### Tutorial
 
-Start the development server on `http://localhost:3000`:
+For a step-by-step guide on fetching data, check out this tutorial:  
+[Fetching Data from a Baserow Table using Nuxt](https://costanza.website/fetching-data-from-a-baserow-table-using-nuxt-a-step-by-step-tutorial)
 
-```bash
-# npm
-npm run dev
+### 2. Posting Data
 
-# pnpm
-pnpm run dev
+Use the `usePostData` composable to add new rows to a Baserow table by sending a POST request. Ideal for form submissions where you need to add data.
 
-# yarn
-yarn dev
+#### Usage
 
-# bun
-bun run dev
+To post data, call `usePostData()` with the row data and table key:
+
+```javascript
+const { data: postData, error: postError } = await usePostData(
+  newRow,
+  tableKey
+);
 ```
 
-## Production
+#### Tutorial
 
-Build the application for production:
+For more on posting data, refer to this tutorial:  
+[Posting Data to a Baserow Table using Nuxt](https://hashnode.com/post/cm35s3zgb000i09l2d3iy9s67)
 
-```bash
-# npm
-npm run build
+### 3. Editing Data
 
-# pnpm
-pnpm run build
+The `useUpdateData` composable allows you to edit existing rows in the Baserow table using a PATCH request.
 
-# yarn
-yarn build
+#### Usage
 
-# bun
-bun run build
+To edit data, track which row is being edited, capture edits in `editedRow`, and call `useUpdateData()`:
+
+```javascript
+const { error: updateError } = await useUpdateData(rowId, editedRow, tableKey);
 ```
 
-Locally preview production build:
+### Folder Structure
 
-```bash
-# npm
-npm run preview
+The project is organized as follows:
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+```plaintext
+/my-nuxt-app
+│
+├── /composables
+│   ├── useFetchData.ts          # Fetch data from Baserow
+│   ├── usePostData.ts           # Post new data to Baserow
+│   └── useUpdateData.ts         # Update data in Baserow
+│
+├── /types
+│   └── tableFields.ts           # Type definitions for Baserow data
+│
+├── /components
+│   └── TableFields.vue          # Displays table data with edit functionality
+│
+├── /pages
+│   └── index.vue                # Main page to display data and form
+│
+├── nuxt.config.ts               # Nuxt configuration file
+└── .env                         # Environment variables (e.g., API token)
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
