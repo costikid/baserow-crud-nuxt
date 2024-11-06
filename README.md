@@ -24,15 +24,14 @@ This repository demonstrates how to interact with a Baserow table using a Nuxt a
 
 3. **Add API token**:
 
-   Create a `.env` file at the root of the project and add your Baserow API token:
+   Create a `.env` file at the root of the project and add your Baserow API token and API URL:
 
-   ```NUXT_API_TOKEN=your baserow api token
-
+   ```plaintext
+   NUXT_API_TOKEN=your_baserow_api_token
+   NUXT_API_URL=https://api.baserow.io
    ```
 
-NUXT_API_URL=https://api.baserow.io
-
-````
+---
 
 4. **Set up constants**:
 
@@ -52,7 +51,7 @@ In your component, call `useFetchData()` to fetch data on load:
 
 ```javascript
 const { data, error } = await useFetchData();
-````
+```
 
 #### Tutorial
 
